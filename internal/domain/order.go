@@ -10,7 +10,6 @@ type Order struct {
 }
 
 type CreateOrderDto struct {
-	ProductID string   `json:"productId"`
-	PaymentID string   `json:"paymentId"`
-	Labels    []string `json:"labels"`
+	ProductID string `json:"productId"`
+	PaymentID string `json:"paymentId"`
 }

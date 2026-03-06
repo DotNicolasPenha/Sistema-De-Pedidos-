@@ -9,4 +9,5 @@ import (
 type PaymentRepository interface {
 	Create(ctx context.Context, payment domain.Payment) (string, error)
 	FindMany() ([]domain.Payment, error)
+	FindById(id string) (domain.Payment, error)
 }
