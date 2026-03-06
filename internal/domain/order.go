@@ -8,3 +8,9 @@ type Order struct {
 	Payment Payment   `json:"payment"`
 	Labels  []string  `json:"labels"`
 }
+
+type CreateOrderDto struct {
+	ProductID string   `json:"productId"`
+	PaymentID string   `json:"paymentId"`
+	Labels    []string `json:"labels"`
+}

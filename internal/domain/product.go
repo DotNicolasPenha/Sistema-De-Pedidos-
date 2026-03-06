@@ -7,3 +7,8 @@ type Product struct {
 	Category string    `json:"category"`
 	Value    int       `json:"value"`
 }
+
+type CreateProductDto struct {
+	Category string `json:"category"`
+	Value    int    `json:"value"`
+}

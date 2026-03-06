@@ -7,3 +7,8 @@ type Payment struct {
 	Method string    `json:"method"`
 	Value  int       `json:"value"`
 }
+
+type CreatePaymentDto struct {
+	Method string `json:"method"`
+	Value  int    `json:"value"`
+}
