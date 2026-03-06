@@ -1,6 +1,9 @@
 package domain
 
+import "github.com/google/uuid"
+
 type Payment struct {
-	Method string `json:"method"`
-	Value  int    `json:"value"`
+	Id     uuid.UUID `json:"id"`
+	Method string    `json:"method"`
+	Value  int       `json:"value"`
 }
