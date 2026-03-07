@@ -9,7 +9,7 @@ import (
 )
 
 type PaymentMemoryRepository struct {
-	memory []domain.Payment
+	data []domain.Payment
 }
 
 func (mr *PaymentMemoryRepository) Create(ctx context.Context, payment domain.Payment) (string, error) {
@@ -18,19 +18,19 @@ func (mr *PaymentMemoryRepository) Create(ctx context.Context, payment domain.Pa
 		return "", err
 	}
 	payment.Id = id
-	mr.memory = append(mr.memory, payment)
+	mr.data = append(mr.data, payment)
 	return payment.Id.String(), nil
 }
 
-func (mr *PaymentMemoryRepository) FindMany() ([]domain.Payment, error) {
-	return mr.memory, nil
+func (mr *PaymentMemoryRepository) FindMany(ctx context.Context) ([]domain.Payment, error) {
+	return mr.data, nil
 }
 
-func (mr *PaymentMemoryRepository) FindById(ctx context.Context, id string) (*domain.Payment, error) {
-	for _, v := range mr.memory {
+func (mr *PaymentMemoryRepository) FindById(ctx context.Context, id string) (domain.Payment, error) {
+	for _, v := range mr.data {
 		if v.Id.String() == id {
-			return &v, nil
+			return v, nil
 		}
 	}
-	return nil, errors.New("Payment not found")
+	return domain.Payment{}, errors.New("Payment not found")
 }

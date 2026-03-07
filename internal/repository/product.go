@@ -8,6 +8,6 @@ import (
 
 type ProductRepository interface {
 	Create(ctx context.Context, product domain.Product) (string, error)
-	FindMany() ([]domain.Product, error)
+	FindMany(ctx context.Context) ([]domain.Product, error)
 	FindById(ctx context.Context, id string) (domain.Product, error)
 }

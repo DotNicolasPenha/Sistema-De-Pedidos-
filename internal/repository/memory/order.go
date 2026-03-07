@@ -9,7 +9,7 @@ import (
 )
 
 type OrderMemoryRepository struct {
-	memory []domain.Order
+	data []domain.Order
 }
 
 func (mr *OrderMemoryRepository) Create(ctx context.Context, order domain.Order) (string, error) {
@@ -18,19 +18,19 @@ func (mr *OrderMemoryRepository) Create(ctx context.Context, order domain.Order)
 		return "", err
 	}
 	order.Id = id
-	mr.memory = append(mr.memory, order)
+	mr.data = append(mr.data, order)
 	return order.Id.String(), nil
 }
 
-func (mr *OrderMemoryRepository) FindMany() ([]domain.Order, error) {
-	return mr.memory, nil
+func (mr *OrderMemoryRepository) FindMany(ctx context.Context) ([]domain.Order, error) {
+	return mr.data, nil
 }
 
-func (mr *OrderMemoryRepository) FindById(ctx context.Context, id string) (*domain.Order, error) {
-	for _, v := range mr.memory {
+func (mr *OrderMemoryRepository) FindById(ctx context.Context, id string) (domain.Order, error) {
+	for _, v := range mr.data {
 		if v.Id.String() == id {
-			return &v, nil
+			return v, nil
 		}
 	}
-	return nil, errors.New("Order not found")
+	return domain.Order{}, errors.New("Order not found")
 }
