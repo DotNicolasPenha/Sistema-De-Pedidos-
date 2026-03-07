@@ -5,6 +5,7 @@ import (
 	"errors"
 
 	"com.DotNicolasPenha.SistemaDePedidos/internal/domain"
+	"github.com/google/uuid"
 )
 
 type PaymentMemoryRepository struct {
@@ -12,6 +13,11 @@ type PaymentMemoryRepository struct {
 }
 
 func (mr *PaymentMemoryRepository) Create(ctx context.Context, payment domain.Payment) (string, error) {
+	id, err := uuid.NewUUID()
+	if err != nil {
+		return "", err
+	}
+	payment.Id = id
 	mr.memory = append(mr.memory, payment)
 	return payment.Id.String(), nil
 }

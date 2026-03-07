@@ -5,6 +5,7 @@ import (
 	"errors"
 
 	"com.DotNicolasPenha.SistemaDePedidos/internal/domain"
+	"github.com/google/uuid"
 )
 
 type ProductMemoryRepository struct {
@@ -12,6 +13,11 @@ type ProductMemoryRepository struct {
 }
 
 func (mr *ProductMemoryRepository) Create(ctx context.Context, product domain.Product) (string, error) {
+	id, err := uuid.NewUUID()
+	if err != nil {
+		return "", err
+	}
+	product.Id = id
 	mr.memory = append(mr.memory, product)
 	return product.Id.String(), nil
 }

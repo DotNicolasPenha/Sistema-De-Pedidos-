@@ -5,6 +5,7 @@ import (
 	"errors"
 
 	"com.DotNicolasPenha.SistemaDePedidos/internal/domain"
+	"github.com/google/uuid"
 )
 
 type OrderMemoryRepository struct {
@@ -12,6 +13,11 @@ type OrderMemoryRepository struct {
 }
 
 func (mr *OrderMemoryRepository) Create(ctx context.Context, order domain.Order) (string, error) {
+	id, err := uuid.NewUUID()
+	if err != nil {
+		return "", err
+	}
+	order.Id = id
 	mr.memory = append(mr.memory, order)
 	return order.Id.String(), nil
 }
