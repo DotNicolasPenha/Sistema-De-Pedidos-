@@ -2,6 +2,7 @@ package memory
 
 import (
 	"context"
+	"errors"
 
 	"com.DotNicolasPenha.SistemaDePedidos/internal/domain"
 )
@@ -17,4 +18,13 @@ func (mr *PaymentMemoryRepository) Create(ctx context.Context, payment domain.Pa
 
 func (mr *PaymentMemoryRepository) FindMany() ([]domain.Payment, error) {
 	return mr.memory, nil
+}
+
+func (mr *PaymentMemoryRepository) FindById(ctx context.Context, id string) (*domain.Payment, error) {
+	for _, v := range mr.memory {
+		if v.Id.String() == id {
+			return &v, nil
+		}
+	}
+	return nil, errors.New("Payment not found")
 }
