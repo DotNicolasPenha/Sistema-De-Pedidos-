@@ -1,6 +1,6 @@
 package domain
 
 var CategoryLabels = map[string]string{
-	Eletrodoméstico: Frágil,
-	Brinquedo:       Presente,
+	Categorys["Eletrodoméstico"]: Labels["Frágil"],
+	Categorys["Brinquedo"]:       Labels["Presente"],
 }

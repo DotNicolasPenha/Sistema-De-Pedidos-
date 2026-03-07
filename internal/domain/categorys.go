@@ -1,6 +1,6 @@
 package domain
 
-var (
-	Eletrodoméstico = "Eletrodoméstico"
-	Brinquedo       = "Brinquedo"
-)
+var Categorys = map[string]string{
+	"Eletrodoméstico": "Eletrodoméstico",
+	"Brinquedo":       "Brinquedo",
+}
